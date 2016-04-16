@@ -9,14 +9,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64"
 
-  # Create a private network, which allows host-only access to the machine using a specific IP.
-  # config.vm.network "private_network", ip: "10.10.50.195"
+  # Setup the network, which allows host-only access to the machine using a specific IP.
   config.vm.network "public_network"
-  # config.vm.network "private_network", ip: "10.10.50.156"
 
   # Share an additional folder to the guest VM. The first argument is the path on the host to the actual folder.
   # The second argument is the path on the guest to mount the folder.
-  config.vm.synced_folder "./wwwroot_wordpress_blog", "/var/www/html/blog-sioo/httpdocs"
+  config.vm.synced_folder "./<%= synced_folder %>", "/var/www/html/<%= synced_folder %>/httpdocs"
 
   # Define the bootstrap file: A (shell) script that runs after first setup of your box (= provisioning)
   config.vm.provision :shell, path: "bootstrap.sh"
