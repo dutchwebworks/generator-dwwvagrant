@@ -6,17 +6,17 @@
 ########################################
 
 # Project folder
-PROJECTFOLDER='blog-sioo/httpdocs'
+PROJECTFOLDER='<%= appname %>/<%= synced_folder %>'
 
 # Apache virtual host
-VHOST_SERVERNAME='blog-sioo.local.poort80.nl'
-VHOST_PORT='8080'
+VHOST_SERVERNAME='<%= appname %>.local.dutchwebworks.nl'
+VHOST_PORT='<%= apache_port %>'
 
 # MySQL database
-ROOT_PASSWORD='1234'
-DB_NAME='SIOOWordpress'
-DB_USER='sioowordpress'
-DB_PASSWORD='SiW3rD'
+ROOT_PASSWORD='<%= mysql_root_password %>'
+DB_NAME='<%= db_name %>'
+DB_USER='<%= db_user %>'
+DB_PASSWORD='<%= db_password %>'
 
 ########################################
 # Provision script

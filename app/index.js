@@ -16,44 +16,27 @@ module.exports = generators.Base.extend({
 				appauthor: this.appauthor,
 				youremail: this.youremail,
 				appversion: this.appversion,
-			};
+				synced_folder: this.synced_folder,
+				apache_port: this.apache_port,
+				mysql_root_password: this.mysql_root_password,
+				db_name: this.db_name,
+				db_user: this.db_user,
+				db_password: this.db_password,
+			};	
 
-		// Images
-		mkdirp(appDir + '/img');
+		// ---------------------------
+		// Directory scaffolding
+		// ---------------------------
 
-		// Javascript
-		mkdirp(appDir + '/js');
-		mkdirp(appDir + '/js/libs');
+		mkdirp(appDir);	
 
-		// Sass
-		mkdirp(appDir + '/sass');
-		mkdirp(appDir + '/sass/base');
-		mkdirp(appDir + '/sass/modules');
-		mkdirp(appDir + '/sass/layout');
-		mkdirp(appDir + '/sass/overrides');
-		this.fs.copy(sourceRoot + '/httpdocs/sass/style.scss', appDir + '/sass/style.scss');
+		// ---------------------------
+		// Copy over (template) files
+		// ---------------------------
 
-		// Grunt related files
-		this.fs.copy(sourceRoot + '/_Grunt_Mac.command', destRoot + '/_Grunt_Mac.command');
-		this.fs.copy(sourceRoot + '/_Grunt_serve_Mac.command', destRoot + '/_Grunt_serve_Mac.command');
-		this.fs.copy(sourceRoot + '/_Grunt_watch_Mac.command', destRoot + '/_Grunt_watch_Mac.command');
-		this.fs.copy(sourceRoot + '/_Grunt_serve_Windows.cmd', destRoot + '/_Grunt_serve_Windows.cmd');
-		this.fs.copy(sourceRoot + '/_Grunt_watch_Windows.cmd', destRoot + '/_Grunt_watch_Windows.cmd');
-		this.fs.copy(sourceRoot + '/_Grunt_Windows.cmd', destRoot + '/_Grunt_Windows.cmd');
-		this.fs.copy(sourceRoot + '/Gruntfile.js', destRoot + '/Gruntfile.js');
-
-		// License
-		this.fs.copy(sourceRoot + '/LICENSE', destRoot + '/LICENSE');
-
-		// Ignore files
-		this.fs.copy(sourceRoot + '/_gitignore', destRoot + '/.gitignore');
-		this.fs.copy(sourceRoot + '/_bowerrc', destRoot + '/.bowerrc');
-
-		// Template context aware files
-		this.fs.copyTpl(sourceRoot + '/package.json', destRoot + '/package.json', templateContext);
-		this.fs.copyTpl(sourceRoot + '/bower.json', destRoot + '/bower.json', templateContext);
-		this.fs.copyTpl(sourceRoot + '/README.md', destRoot + '/README.md', templateContext);
-		this.fs.copyTpl(sourceRoot + '/httpdocs/index.html', appDir + '/index.html', templateContext);
+		this.fs.copyTpl(sourceRoot + '/_Vagrantfile', destRoot + '/Vagrantfile', templateContext);
+		this.fs.copyTpl(sourceRoot + '/_bootstrap.sh', destRoot + '/bootstrap.sh', templateContext);
+		this.fs.copyTpl(sourceRoot + '/_README.md', destRoot + '/README.md', templateContext);		
 	},
 	_getPrompt: function() {
 		var prompts = [
@@ -77,6 +60,37 @@ module.exports = generators.Base.extend({
 				{
 					name: 'version',
 					message: 'What is the version of your app?',
+					default: '0.1.0'
+				},
+				{
+					name: 'synced_folder',
+					message: 'What is the directory name of the Vagrant synced folder going to be?',
+					default: 'httpdocs'
+				},
+				{
+					name: 'apache_port',
+					message: 'What is the Apache port number going to be?',
+					default: '8080'
+				},
+				{
+					name: 'mysql_root_password',
+					message: 'What is the MySQL root password of the virtual machine going to be?',
+					default: '1234',
+				},
+				{
+					name: 'db_name',
+					message: 'What is the MySQL database name of your app going to be?',
+					default: this.appname,
+				},
+				{
+					name: 'db_user',
+					message: 'What is the MySQL database username of your project going to be?',
+					default: this.appname,
+				},
+				{
+					name: 'db_password',
+					message: 'What is the MySQL database password of your project going to be?',
+					default: '1234',
 				}
 			];
 
@@ -88,11 +102,17 @@ module.exports = generators.Base.extend({
 		this.appauthor = answers.yourname,
 		this.youremail = answers.youremail,
 		this.appversion = answers.version,
+		this.synced_folder = answers.synced_folder,
+		this.apache_port = answers.apache_port,
+		this.mysql_root_password = answers.mysql_root_password,
+		this.db_name = answers.db_name,
+		this.db_user = answers.db_user,
+		this.db_password = answers.db_password,
 		callback();
 	},
 	initializing: function() {
-		var message = chalk.yellow.bold('Welcome to Dutwebworks Grunt ') + chalk.yellow('A starter kit for a web site with Grunt');
-		this.log(yosay(message, { maxLength: 17 }));
+		var message = chalk.yellow.bold('Welcome to Dutchwebworks Vagrant ') + chalk.yellow('A starter kit for a Wordpress web site runing in Vagrant');
+		this.log(yosay(message, { maxLength: 16 }));
 	},
 	promting: function() {
 		var done = this.async();
@@ -108,7 +128,9 @@ module.exports = generators.Base.extend({
 		this._createProjectFileSystem();
 	},
 	install: function() {
-		this.bowerInstall();
-		this.npmInstall();
+		var message = chalk.yellow.bold('All done, now run: vagrant up');
+		this.log(yosay(message, { maxLength: 22 }));
+
+		// this.spawnCommand('vagrant up', ['install']);
 	},
 });
