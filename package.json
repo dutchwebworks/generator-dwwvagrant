@@ -1,7 +1,7 @@
 {
-  "name": "generator-p80vagrant",
+  "name": "generator-dwwvagrant",
   "version": "0.1.0",
-  "description": "Yeoman generator for Poort80 Basic Vagrant setup for Wordpress project using Ubuntu Virtual Machine.",
+  "description": "Yeoman generator for Dutchwebworks Basic Vagrant setup for Wordpress project using Ubuntu Virtual Machine.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
