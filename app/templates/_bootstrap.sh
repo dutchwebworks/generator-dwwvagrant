@@ -6,14 +6,14 @@
 ########################################
 
 # Project folder
-PROJECTFOLDER='<%= synced_folder %>/httpdocs'
+PROJECTFOLDER='<%= appname %>/<%= synced_folder %>'
 
 # Apache virtual host
-VHOST_SERVERNAME='blog-sioo.local.poort80.nl'
-VHOST_PORT='8080'
+VHOST_SERVERNAME='<%= appname %>.local.poort80.nl'
+VHOST_PORT='<%= apache_port %>'
 
 # MySQL database
-ROOT_PASSWORD='1234'
+ROOT_PASSWORD='<%= mysql_root_password %>'
 DB_NAME='<%= db_name %>'
 DB_USER='<%= db_user %>'
 DB_PASSWORD='<%= db_password %>'

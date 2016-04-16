@@ -17,13 +17,26 @@ module.exports = generators.Base.extend({
 				youremail: this.youremail,
 				appversion: this.appversion,
 				synced_folder: this.synced_folder,
+				apache_port: this.apache_port,
+				mysql_root_password: this.mysql_root_password,
 				db_name: this.db_name,
 				db_user: this.db_user,
 				db_password: this.db_password,
-			};
+			};	
 
-		// Template context aware files
-		this.fs.copyTpl(sourceRoot + '/_README.md', destRoot + '/README.md', templateContext);
+		// ---------------------------
+		// Directory scaffolding
+		// ---------------------------
+
+		mkdirp(appDir);	
+
+		// ---------------------------
+		// Copy over (template) files
+		// ---------------------------
+
+		this.fs.copyTpl(sourceRoot + '/_Vagrantfile', destRoot + '/Vagrantfile', templateContext);
+		this.fs.copyTpl(sourceRoot + '/_bootstrap.sh', destRoot + '/bootstrap.sh', templateContext);
+		this.fs.copyTpl(sourceRoot + '/_README.md', destRoot + '/README.md', templateContext);		
 	},
 	_getPrompt: function() {
 		var prompts = [
@@ -52,7 +65,17 @@ module.exports = generators.Base.extend({
 				{
 					name: 'synced_folder',
 					message: 'What is the directory name of the Vagrant synced folder going to be?',
-					default: this.appname
+					default: 'httpdocs'
+				},
+				{
+					name: 'apache_port',
+					message: 'What is the Apache port number going to be?',
+					default: '8080'
+				},
+				{
+					name: 'mysql_root_password',
+					message: 'What is the MySQL root password of the virtual machine going to be?',
+					default: '1234',
 				},
 				{
 					name: 'db_name',
@@ -80,14 +103,16 @@ module.exports = generators.Base.extend({
 		this.youremail = answers.youremail,
 		this.appversion = answers.version,
 		this.synced_folder = answers.synced_folder,
+		this.apache_port = answers.apache_port,
+		this.mysql_root_password = answers.mysql_root_password,
 		this.db_name = answers.db_name,
 		this.db_user = answers.db_user,
 		this.db_password = answers.db_password,
 		callback();
 	},
 	initializing: function() {
-		var message = chalk.yellow.bold('Welcome to Dutwebworks Vagrant ') + chalk.yellow('A starter kit for a web site with Vagrant');
-		this.log(yosay(message, { maxLength: 17 }));
+		var message = chalk.yellow.bold('Welcome to Poort80 Vagrant ') + chalk.yellow('A starter kit for a Wordpress web site runing in Vagrant');
+		this.log(yosay(message, { maxLength: 16 }));
 	},
 	promting: function() {
 		var done = this.async();
@@ -103,6 +128,9 @@ module.exports = generators.Base.extend({
 		this._createProjectFileSystem();
 	},
 	install: function() {
-		// vagrant up
+		// this.spawnCommand('vagrant up', ['install']);
+
+		var message = chalk.yellow.bold('All done, now run: vagrant up');
+		this.log(yosay(message, { maxLength: 22 }));
 	},
 });
