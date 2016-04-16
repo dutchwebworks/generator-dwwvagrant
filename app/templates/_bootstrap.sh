@@ -9,7 +9,7 @@
 PROJECTFOLDER='<%= appname %>/<%= synced_folder %>'
 
 # Apache virtual host
-VHOST_SERVERNAME='<%= appname %>.local.poort80.nl'
+VHOST_SERVERNAME='<%= appname %>.local.dutchwebworks.nl'
 VHOST_PORT='<%= apache_port %>'
 
 # MySQL database

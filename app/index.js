@@ -111,7 +111,7 @@ module.exports = generators.Base.extend({
 		callback();
 	},
 	initializing: function() {
-		var message = chalk.yellow.bold('Welcome to Poort80 Vagrant ') + chalk.yellow('A starter kit for a Wordpress web site runing in Vagrant');
+		var message = chalk.yellow.bold('Welcome to Dutchwebworks Vagrant ') + chalk.yellow('A starter kit for a Wordpress web site runing in Vagrant');
 		this.log(yosay(message, { maxLength: 16 }));
 	},
 	promting: function() {
@@ -128,9 +128,9 @@ module.exports = generators.Base.extend({
 		this._createProjectFileSystem();
 	},
 	install: function() {
-		// this.spawnCommand('vagrant up', ['install']);
-
 		var message = chalk.yellow.bold('All done, now run: vagrant up');
 		this.log(yosay(message, { maxLength: 22 }));
+
+		// this.spawnCommand('vagrant up', ['install']);
 	},
 });
