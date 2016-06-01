@@ -40,9 +40,9 @@ sudo apt-get -y install mysql-server
 sudo apt-get install php5-mysql
 
 # Setup database, user and prefileges
-mysql -uroot -p$ROOT_PASSWORD -e "CREATE DATABASE $DB_NAME CHARACTER SET utf8 COLLATE latin1_swedish_ci"
-mysql -uroot -p$ROOT_PASSWORD -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD'"
-mysql -uroot -p$ROOT_PASSWORD -e "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON '$DB_NAME'.* TO '$DB_USER'@'localhost';"
+mysql -uroot -p$ROOT_PASSWORD -e "CREATE DATABASE $DB_NAME CHARACTER SET utf8 COLLATE utf8_swedish_ci"
+mysql -uroot -p$ROOT_PASSWORD -e "CREATE USER $DB_USER@localhost IDENTIFIED BY '$DB_PASSWORD'"
+mysql -uroot -p$ROOT_PASSWORD -e "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON $DB_NAME.* TO $DB_USER@localhost;"
 
 # install phpmyadmin and give password(s) to installer
 # for simplicity I'm using the same password for mysql and phpmyadmin
