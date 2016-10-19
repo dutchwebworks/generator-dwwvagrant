@@ -1,4 +1,4 @@
-#Dutchwebworks Yeoman generator for Vagrant Wordpress setup
+# Dutchwebworks Yeoman generator for Vagrant Wordpress setup
 
 *By Dennis Burger, april 2016*
 
