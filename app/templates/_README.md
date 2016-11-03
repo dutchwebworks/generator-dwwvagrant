@@ -40,7 +40,7 @@ Vagrant will automatically keep your local development computers **working direc
 
 	config.vm.synced_folder "./<%= synced_folder %>", "/var/www/html/<%= appname %>/httpdocs"
 
-This way you can use your own preferred local development computers code-editor or IDE to edit files and folders. When saving a file (or manage directoires) Vagrant will synchronize them to the virtual-machine.
+This way you can use your own preferred local development computers code-editor or IDE to edit files and folders. When saving a file (or manage directories) Vagrant will synchronize them to the virtual-machine.
 
 ### Get IP address of Ubuntu virtual-machine
 
@@ -54,7 +54,7 @@ Once logged in get the IP address of the virtual-machine.
 
 	hostname -I
     
-Thit will sometimes give you 2 IP address. Usually it's the second IP address. Then close the SSH connection by running: 
+This will sometimes give you 2 IP address. Usually it's the second IP address. Then close the SSH connection by running: 
 
 	exit
 
@@ -135,7 +135,7 @@ Keep in mind that **phpMyAdmin can't upload files larger than the default 2MB** 
 
 ## Shutdown the Vagrant virtual-machine
 
-To shutdown the running Vagrant box run the command below on your local development copmuter (again where the `Vagrantfile` is located). This will properly shutdown the Ubuntu virtual-machine.
+To shutdown the running Vagrant box run the command below on your local development computer (again where the `Vagrantfile` is located). This will properly shutdown the Ubuntu virtual-machine.
 
 	vagrant halt
 
@@ -161,25 +161,9 @@ Once the initial setup is done; all you need to do to continue working on the bl
 
 *On Windows one can also use the `_Vagrant-up.cmd` file; double-click it run the above command*.
 
-When booting the virtual-machine the **provioning part is skipped** because the virtual-machine was already provioned before. Now open your local machine web browser again and load the web site again.
+When booting the virtual-machine the **provisioning part is skipped** because the virtual-machine was already provioned before. Now open your local machine web browser again and load the web site again.
 
 	http://<%= appname %>.local.nl
-
-Please make sure your **network setup hasn't changed**. If so the IP addresses of the virtual-machine might have changed. Then you'll need to get the IP address again from the virtual-machine and update your local machine's `hosts` file appropriately.
-
-## Destroying the Vagrant virtual-machine
-
-When your all done and want to delete the virtual-machine, or start all over from scratch, you can (shutdown) and destroy the Vagrant virtual-machine by running this command inside the same directory as the `vagrantfile`.
-
-	vagrant destroy
-
-To start all over again run:
-
-	vagrant up
-
-The virtual-machine is copied to this project then booted and provisioned again.
-
-## More info
 
 Please make sure your **network setup hasn't changed**. If so the IP addresses of the virtual-machine might have changed. Then you'll need to get the IP address again from the virtual-machine and update your local machine's `hosts` file appropriately.
 
