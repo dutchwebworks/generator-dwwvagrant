@@ -11,9 +11,9 @@
     "url": "https://github.com/dutchwebworks/generator-dwwvagrant/issues"
   }, 
   "homepage": "https://github.com/dutchwebworks/generator-dwwvagrant",
-  "files": {
+  "files": [
     "app"
-  },
+  ],
   "keywords": [
     "yeoman-generator",
     "vagrant",
