@@ -128,9 +128,10 @@ module.exports = generators.Base.extend({
 		this._createProjectFileSystem();
 	},
 	install: function() {
-		var message = chalk.yellow.bold('All done, now run: vagrant up');
+		var message = chalk.yellow.bold('All done, now change bash var settings in bootstrap.sh and then run: vagrant up');
 		this.log(yosay(message, { maxLength: 22 }));
-
-		// this.spawnCommand('vagrant up', ['install']);
 	},
+	end: function() {
+		// this.spawnCommand('vagrant', ['up']);
+	}
 });
