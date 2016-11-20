@@ -1,6 +1,6 @@
 {
   "name": "generator-dwwvagrant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Yeoman generator for basic Vagrant setup for development of a Wordpress web site using a Ubuntu Virtual Machine with provisioning script.",
   "main": "app/index.js",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "bugs": {
     "url": "https://github.com/dutchwebworks/generator-dwwvagrant/issues"
-  }, 
+  },
   "homepage": "https://github.com/dutchwebworks/generator-dwwvagrant",
   "files": [
     "app"
@@ -22,7 +22,7 @@
     "wordpress"
   ],
   "peerDependencies": {
-      "yo": ">=1.7.1"
+    "yo": ">=1.7.1"
   },
   "author": "Dennis Burger",
   "license": "ISC",

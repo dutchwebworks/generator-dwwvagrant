@@ -6,7 +6,7 @@ The following is a basic installation and setup for running the Wordpress site l
 
 Using this setup uses a Ubuntu Linux virtual-machine that (could) closely match the production environment. This in favor of running something that doesn't match a production environment like a Windows WAMP setup.
 
-One must download Wordpress itself and place it into the already present (but empty) `<%= synced_folder %>` directory.
+One must download Wordpress itself and place it into the already present (but empty) `httpdocs` directory.
 
 ## Installation
 
@@ -38,13 +38,13 @@ After booting up the virtual-machine Vagrant will (once) **provision** the virtu
 
 Vagrant will automatically keep your local development computers **working directory in sync. with the virtual-machine**. This is configured by the `Vagrantfile`.
 
-	config.vm.synced_folder "./<%= synced_folder %>", "/var/www/html/<%= appname %>/httpdocs"
+	config.vm.synced_folder "./httpdocs", "/var/www/html/<%= appname %>/httpdocs"
 
 This way you can use your own preferred local development computers code-editor or IDE to edit files and folders. When saving a file (or manage directories) Vagrant will synchronize them to the virtual-machine.
 
 ### Get IP address of Ubuntu virtual-machine
 
-This is one time requirement or when you know the IP addresses are going to change in your network setup. You'll need to figure out the **IP address** of the Vagrant virtual-machine in order to **add it to your own local machine's** `hosts` file. This is required to map the hostname to the IP address of the virtual-machine. Later on you can use for example `http://<%= appname %>.local.nl` in your local development computers web browser. That will display the web site running in the Ubuntu virtual-machine (and virtual-machine's Apache web server is listening to this hostname for requests).
+This is one time requirement or when you know the IP addresses are going to change in your network setup. You'll need to figure out the **IP address** of the Vagrant virtual-machine in order to **add it to your own local machine's** `hosts` file. This is required to map the hostname to the IP address of the virtual-machine. Later on you can use for example `http://<%= appname %>.local.dutchwebworks.nl` in your local development computers web browser. That will display the web site running in the Ubuntu virtual-machine (and virtual-machine's Apache web server is listening to this hostname for requests).
 
 #### SSH access
 
@@ -67,7 +67,7 @@ Open your local development computers `hosts` file and add the IP address of the
 
 Add the end of the `hosts` file add the following line. This will map the domainname to the IP address of the Ubuntu virtual-machine.
 
-	172.28.128.3	<%= appname %>.local.poort80.nl
+	172.28.128.3	<%= appname %>.local.dutchwebworks.nl
 
 ### Import the MySQL database dump
 
@@ -84,7 +84,7 @@ In the production MySQL dump; all URL's point to the production environment. Mak
 Check the SQL vars. below and run the SQL script on the virtual-machine MySQL database.
 
 	SET @fromDomainname = 'https://www.<%= appname %>.nl';
-	SET @toDomainname = 'http://<%= appname %>.local.nl/';
+	SET @toDomainname = 'http://<%= appname %>.local.dutchwebworks.nl';
 	SET @uploadPath = '/var/www/html/<%= appname %>/httpdocs/wp-content/uploads';
 
 	SET collation_connection = 'utf8_general_ci';
@@ -108,7 +108,7 @@ Now you'll need to have an updated Wordpress upload images directory. Otherwise 
 
 Once the database import is done, the Wordpress local URL's are correct and the Wordpress 'upload' directory is up to date, open your local development computers web browser to view the web site (running inside the virtual-machine).
 
-	http://<%= appname %>.local.nl
+	http://<%= appname %>.local.dutchwebworks.nl
 
 * Now use your local development computers editor / IDE to make changes to the Wordrpess web site source files. 
 * Vagrant will automatically sync. your changes to the virtual-machine. 
@@ -123,7 +123,7 @@ If your local development computers web browser can't view the virtual-machines 
 
 One can also access the virtual-machines Ubuntu MySQL databases by using the pre-installed phpMyAdmin setup that was installed during the provisioning installation.
 
-	http://<%= appname %>.local.nl/phpmyadmin
+	http://<%= appname %>.local.dutchwebworks.nl/phpmyadmin
     
 Or use the IP address of the Ubuntu virtual-machine
 
@@ -163,7 +163,7 @@ Once the initial setup is done; all you need to do to continue working on the bl
 
 When booting the virtual-machine the **provisioning part is skipped** because the virtual-machine was already provioned before. Now open your local machine web browser again and load the web site again.
 
-	http://<%= appname %>.local.nl
+	http://<%= appname %>.local.dutchwebworks.nl
 
 Please make sure your **network setup hasn't changed**. If so the IP addresses of the virtual-machine might have changed. Then you'll need to get the IP address again from the virtual-machine and update your local machine's `hosts` file appropriately.
 
