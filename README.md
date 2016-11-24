@@ -17,17 +17,17 @@ Open a **command-line window** (Terminal or MS-DOS) and type the following to gl
 
 	npm install -g yo
 
-## Linking this Yeoman generator
+## Download this Yeoman generator
 
-Once above is installed open a **command-line window** and `cd` into the directory of this `README.md` file. Make sure your **not** in the `app/` sub-directory. Then type the following:
+Before you can use this generator you need to download it. Run the command below to **globally** install this generator.
 
-	npm link
+	npm install -g generator-dwwvagrant
 
-This will **sym-link** this Yeoman generator to your locally installed **global** NPM list. Now this Yeoman generator is available on your system.
+### Check globally installed NPM packages
 
-To view your globally installed NPM list type:
+To view your globally installed NPM list type the following. The new Yeoman generator should be listed here.
 
-	npm list -g --depth=0
+	npm ls -g --depth=0
 
 ## Using this generator in a new project
 
