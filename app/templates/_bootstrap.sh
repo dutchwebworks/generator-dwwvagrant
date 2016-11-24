@@ -6,11 +6,10 @@
 ########################################
 
 # Project folder
-PROJECTFOLDER='<%= appname %>/<%= synced_folder %>'
+PROJECTFOLDER='<%= appname %>/httpdocs'
 
 # Apache virtual host
 VHOST_SERVERNAME='<%= appname %>.local.dutchwebworks.nl'
-VHOST_PORT='<%= apache_port %>'
 
 # MySQL database
 ROOT_PASSWORD='<%= mysql_root_password %>'
@@ -55,8 +54,7 @@ sudo apt-get -y install phpmyadmin
 
 # setup hosts file
 VHOST=$(cat <<EOF
-Listen $VHOST_PORT
-<VirtualHost *:$VHOST_PORT>
+<VirtualHost *:80>
 	ServerName $VHOST_SERVERNAME
     DocumentRoot "/var/www/html/${PROJECTFOLDER}"
     <Directory "/var/www/html/${PROJECTFOLDER}">
