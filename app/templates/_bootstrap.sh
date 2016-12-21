@@ -68,6 +68,8 @@ echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
 
 # enable mod_rewrite
 sudo a2enmod rewrite
+sudo a2enmod expires
+sudo a2enmod headers
 
 # restart apache
 service apache2 restart
