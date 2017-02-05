@@ -28,9 +28,10 @@ sudo mkdir -p "/var/www/html/${PROJECTFOLDER}"
 sudo apt-get update
 sudo apt-get -y upgrade
 
-# install apache 2.5 and php 5.5
+# install apache 2.5, php 5.5 and xdebug
 sudo apt-get install -y apache2
 sudo apt-get install -y php5
+sudo apt-get install php5-xdebug
 
 # install mysql and give password to installer
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $ROOT_PASSWORD"
